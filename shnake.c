@@ -38,6 +38,11 @@ void	set_terminal_mode(int mode)
 #define D_UP 1
 #define D_LEFT 2
 #define D_DOWN 3
+#define GREEN "\001\x1B[32m\002"
+#define YELLOW "\001\x1B[33m\002"
+#define MAGENTA "\001\x1B[35m\002"
+#define RESET "\001\x1B[0m\002"
+#define CURSOR_UP_16 "\033[16A"
 
 int get_head_direction(int	current)
 {
@@ -147,19 +152,19 @@ void print_map(t_snake *snake)
 		{
 			c = map[y_iter][x_iter];
 			if (c == 'O')
-				printf("\x1B[32m");
+				printf(GREEN);
 			else if (c == 'x' || c == 'X')
-				printf("\x1B[33m");
+				printf(YELLOW);
 			else if (c == '#')
-				printf("\x1B[35m");
-			printf("%c\x1B[0m", c);
+				printf(MAGENTA);
+			printf("%c%s", c, RESET);
 			x_iter ++;
 		}
 		x_iter = 0;
 		y_iter ++;
 		printf("\n");
 	}
-	printf("\033[16A");
+	printf(CURSOR_UP_16);
 }
 
 void	move_snake(t_snake *snake)
@@ -249,7 +254,7 @@ int	main(void)
 			break ;
 	}
 	printf("You lost! :(     \n");
-	printf("Your score: \x1B[32m%i\x1B[0m          \n", snake->snake_len);
+	printf("Your score: %s%i%s          \n", GREEN, snake->snake_len, RESET);
 	set_terminal_mode(0);
 	free(snake);
 	return (0);
