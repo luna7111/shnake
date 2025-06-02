@@ -51,13 +51,13 @@ int get_head_direction(int	current)
 	n = read(STDIN_FILENO, buf, 64);
 	if (n == 3 && buf[0] == 27 && buf[1] == 91)
 	{
-		if (buf[2] == 65)
+		if (buf[2] == 65 && current != D_DOWN)
 			return (D_UP);
-		else if (buf[2] == 66)
+		else if (buf[2] == 66 && current != D_UP)
 			return (D_DOWN);
-		else if (buf[2] == 67)
+		else if (buf[2] == 67 && current != D_LEFT)
 			return (D_RIGHT);
-		else if (buf[2] == 68)
+		else if (buf[2] == 68 && current != D_RIGHT)
 			return (D_LEFT);
 	}
 	return (current);
