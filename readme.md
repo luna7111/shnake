@@ -21,4 +21,6 @@ I'm still trying to figure out some solution to this problem.
 
 So, no library to directly check keyboard input BUT i had read(), ioctrl() and tcsetattr() which alowed me to put the terminal in raw mode (get input byte by byte instead of full lines like canonical mode) and check if there is any input to read before calling read() so the program doesn't get stuck waiting for any input to read. I also used a somewhat big buffer in the read() calls, this is to clear the buffer so that if you push a key for a long time the program doesn't have to read every single byte.
 
+---
+
 This program was really fun to make! I always enjoy having to work without some of the things i usually take for granted. :D
