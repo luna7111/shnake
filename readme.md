@@ -16,3 +16,7 @@ I hate this one. There wasn't any time/wait/sleep functions like usleep() allowe
 Compilers REALLY want to optimize stuff so i used a volatile variable to avoid the compiler omiting the "unnecesary" loop.
 The problem with this one is the wait time depends too much on the speed of the processor, cache hits and that kind of stuff, so the snake will go too fast on some computers and painfully slow on others.
 I'm still trying to figure out some solution to this problem.
+
+## Input
+
+So, no library to directly check keyboard input BUT i had read(), ioctrl() and tcsetattr() which alowed me to put the terminal in raw mode (get input byte by byte instead of full lines like canonical mode) and check if there is any input to read before calling read() so the program doesn't get stuck waiting for any input to read. I also used a somewhat big buffer in the read() calls, this is to clear the buffer so that if you push a key for a long time the program doesn't have to read every single byte.
