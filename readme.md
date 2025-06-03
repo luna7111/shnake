@@ -3,6 +3,8 @@
 This program is a built-in command for my minishell project. 
 It's a simple command line implementation of the arcade game Snake but complying with the limited set of allowed functions by the project instructions.
 
+---
+
 Here are some perks i had to make:
 
 ## Random numbers
