@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/05/30 22:25:17 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/05/31 23:40:26 by ldel-val          ``                     */
+/*   Updated: 2025/06/02 14:34:43 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int get_head_direction(int	current)
 	ioctl(STDIN_FILENO, FIONREAD, &n);
 	if (n <= 0)
 		return (current);
-	n = read(STDIN_FILENO, buf, 64);
-	if (n == 3 && buf[0] == 27 && buf[1] == 91)
+	n = read(STDIN_FILENO, buf, 128);
+	if (n >= 3 && buf[0] == 27 && buf[1] == 91)
 	{
 		if (buf[2] == 65)
 			return (D_UP);
@@ -234,7 +234,7 @@ int	main(void)
 
 	snake = init_snake();
 	set_terminal_mode(1);
-	wait_time = 700000000;
+	wait_time = 200000000;
 
 	while (1)
 	{
@@ -244,7 +244,7 @@ int	main(void)
 			eat_apple(snake);
 		print_map(snake);
 		busy_wait(wait_time);
-		wait_time -= 500000;
+		wait_time -= wait_time / 250;
 		if (check_death(snake))
 			break ;
 	}
